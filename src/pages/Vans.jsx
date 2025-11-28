@@ -16,11 +16,15 @@ export default function Vans() {
    const vanElements = vans.map((van) => {
       return (
          <article className="van-wrapper" key={van.id}>
-            <h2>{van.name}</h2>
+            <h2 className="van-title">{van.name}</h2>
             <img className="van-card-img" src={van.imageUrl} alt={van.name} />
-            <p>{van.description}</p>
-            <p>Price: ${van.price}</p>
-            <p>{van.type[0].toUpperCase() + van.type.slice(1)}</p>
+            {/* <p>{van.description}</p>*/}
+            <p className="van-price">
+               ${van.price} <span>/ day</span>
+            </p>
+            <p className="van-type">
+               {van.type[0].toUpperCase() + van.type.slice(1)}
+            </p>
          </article>
       );
    });

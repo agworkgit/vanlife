@@ -188,6 +188,27 @@
    display: flex;
    flex-direction: column;
    gap: 1.5rem;
+   justify-content: start;
+}
+
+.van-title {
+   font-size: 1.5rem;
+}
+
+.van-price {
+   font-weight: 700;
+}
+.van-price > span {
+   font-weight: 300;
+}
+
+.van-type {
+   color: white;
+   background-color: #ff8c38;
+   width: max-content;
+   padding: 0.5rem 1rem;
+   border-radius: 0.5rem;
+   font-weight: 500;
 }
 
 .van-card-img {
