@@ -13,25 +13,21 @@ export default function Vans() {
          .then((data) => setVans(data.vans));
    }, []);
 
+   const vanElements = vans.map((van) => {
+      return (
+         <article className="van-wrapper" key={van.id}>
+            <h2>{van.name}</h2>
+            <img className="van-card-img" src={van.imageUrl} alt={van.name} />
+            <p>{van.description}</p>
+            <p>Price: ${van.price}</p>
+            <p>{van.type[0].toUpperCase() + van.type.slice(1)}</p>
+         </article>
+      );
+   });
+
    return (
       <section className="standard-page">
-         <div className="grid">
-            {vans.map((van) => {
-               return (
-                  <article className="van-wrapper" key={van.id}>
-                     <h2>{van.name}</h2>
-                     <img
-                        className="van-card-img"
-                        src={van.imageUrl}
-                        alt={van.name}
-                     />
-                     <p>{van.description}</p>
-                     <p>Price: ${van.price}</p>
-                     <p>{van.type[0].toUpperCase() + van.type.slice(1)}</p>
-                  </article>
-               );
-            })}
-         </div>
+         <div className="vans-grid">{vanElements}</div>
       </section>
    );
 }
