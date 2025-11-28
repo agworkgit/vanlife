@@ -176,3 +176,10 @@
    display: grid;
    padding-bottom: 4rem;
 }
+
+/* Temp */
+
+.van-card-img {
+   width: 200px;
+   height: 200px;
+}

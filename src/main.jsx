@@ -3,6 +3,9 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
+// MirageJS Mock API
+import "./data/server";
+
 createRoot(document.getElementById("root")).render(
    <StrictMode>
       <App />
