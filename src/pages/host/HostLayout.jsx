@@ -8,6 +8,8 @@ export default function HostLayout() {
             <NavLink
                className={({ isActive }) => (isActive ? "active-link" : "link")}
                to="/host"
+               // Will tell Router to end matching here, otherwise multi match conflict
+               end
             >
                Dashboard
             </NavLink>

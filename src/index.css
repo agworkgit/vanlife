@@ -241,8 +241,3 @@ body {
    display: flex;
    gap: 1rem;
 }
-
-.host-nav > a {
-   text-decoration: none;
-   color: black;
-}
