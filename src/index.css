@@ -38,10 +38,16 @@ body {
 
 /* Navbar Links */
 
-.navbar > .link {
+.link {
    cursor: pointer;
    text-decoration: none;
    color: black;
+}
+
+.active-link {
+   color: black;
+   text-decoration: underline;
+   font-weight: bold;
 }
 
 /* Button */
@@ -239,8 +245,4 @@ body {
 .host-nav > a {
    text-decoration: none;
    color: black;
-}
-
-.host-nav > a:hover {
-   text-decoration: underline;
 }
