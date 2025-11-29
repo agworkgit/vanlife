@@ -77,7 +77,7 @@
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   padding: 4rem 2rem;
+   padding: 4rem 0rem;
 }
 
 .card > img {
@@ -105,7 +105,6 @@
    gap: 2rem;
    padding: 2rem 2rem;
    border-radius: 0.5rem;
-   margin-inline: 2rem;
 }
 
 .cta > h3 {
@@ -134,13 +133,6 @@
 
 /* Pages */
 
-/* Overlay */
-
-.overlay {
-   background-color: rgba(0, 0, 0, 0.5);
-   height: 100vh;
-}
-
 /* Page */
 
 .background-page {
@@ -148,10 +140,12 @@
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
+   padding-inline: 2rem;
 }
 
 .standard-page {
    background-color: #fff7ed;
+   padding-inline: 2rem;
 }
 
 /* Footer */
@@ -179,9 +173,9 @@
 
 .vans-grid {
    display: grid;
-   grid-template-columns: repeat(2, auto);
-   gap: 2rem;
-   padding: 4rem 2rem;
+   grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+   gap: 3rem;
+   padding: 2rem 0rem;
 }
 
 .van-wrapper {
@@ -213,7 +207,8 @@
 
 .van-card-img {
    width: 100%;
-   height: 300px;
+   height: 100%;
+   object-position: center;
    object-fit: cover;
    border-radius: 0.5rem;
 }

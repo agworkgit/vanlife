@@ -5,6 +5,17 @@ import React from "react";
 import Card from "../components/Card";
 import CTA from "../components/CTA";
 
+/**
+ * {
+ * id: "1",
+ * name: "Modest Explorer",
+ * price: 60,
+ * description: "The Modest Explorer is a van designed to get you out of the house and into nature. This beauty is equipped with solar panels, a composting toilet, a water tank and kitchenette. The idea is that you can pack up your home and escape for a weekend or even longer!",
+ * imageUrl: "https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png",
+ * type: "simple"
+ * }
+ */
+
 export default function Vans() {
    const [vans, setVans] = React.useState([]);
    React.useEffect(() => {
@@ -31,21 +42,8 @@ export default function Vans() {
 
    return (
       <section className="standard-page">
+         <h1>Explore our van options</h1>
          <div className="vans-grid">{vanElements}</div>
       </section>
    );
 }
-
-// <h2>Explore our van options</h2>
-// <p>New</p>
-// <p>Used</p>
-// <Card
-//    textColor={"black"}
-//    img={
-//       "https://images.unsplash.com/photo-1576793048000-494aaa93d160?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dmFufGVufDB8fDB8fHww"
-//    }
-//    title={"Some van"}
-//    descriptionTop={`Van Details`}
-//    descriptionBottom={`Price: $ An arm and a leg`}
-//    buttonText={"Buy now"}
-// />
