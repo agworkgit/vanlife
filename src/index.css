@@ -212,3 +212,8 @@
    object-fit: cover;
    border-radius: 0.5rem;
 }
+
+.van-details-link {
+   text-decoration: none;
+   color: black;
+}
