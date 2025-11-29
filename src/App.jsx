@@ -20,6 +20,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/vans" element={<Vans />} />
+            {/* :id represents a variable inside our path (see useParams() to access the variable),
+               we can also add multiple variables if we want i.e. :id/:type etc.. */}
             <Route path="/vans/:id" element={<VanDetail />} />
          </Routes>
          <Footer />
