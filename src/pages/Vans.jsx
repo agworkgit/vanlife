@@ -27,13 +27,19 @@ export default function Vans() {
 
    const vanElements = vans.map((van) => {
       return (
-         <Link className="van-details-link" to={`/vans/${van.id}`} key={van.id}>
+         <Link
+            className="van-details-link"
+            to={`/vans/${van.id}`}
+            key={van.id}
+            // sr-only
+            aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
+         >
             <article className="van-wrapper">
-               <h2 className="van-title">{van.name}</h2>
+               <p className="van-title">{van.name}</p>
                <img
                   className="van-card-img"
                   src={van.imageUrl}
-                  alt={van.name}
+                  alt={`Image for ${van.name}`}
                />
                {/* <p>{van.description}</p>*/}
                <p className="van-price">
