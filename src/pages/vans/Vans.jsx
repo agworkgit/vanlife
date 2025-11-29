@@ -3,8 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Components
-import Card from "../components/Card";
-import CTA from "../components/CTA";
+// import Card from "../../components/Card";
+// import CTA from "../../components/CTA";
 
 /**
  * {
