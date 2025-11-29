@@ -12,7 +12,7 @@ import About from "./pages/About";
 import Vans from "./pages/vans/Vans";
 import VanDetail from "./pages/vans/VanDetail";
 // Host
-import Dashboard from "./pages/host/Dasboard";
+import HostLayout from "./pages/host/HostLayout";
 import Income from "./pages/host/Income";
 import Reviews from "./pages/host/Reviews";
 
@@ -30,9 +30,10 @@ function App() {
                   we can also add multiple variables if we want i.e. :id/:type etc.. */}
                <Route path="/vans/:id" element={<VanDetail />} />
 
-               <Route path="/host" element={<Dashboard />} />
-               <Route path="/host/income" element={<Income />} />
-               <Route path="/host/reviews" element={<Reviews />} />
+               <Route path="/host" element={<HostLayout />}>
+                  <Route path="/host/income" element={<Income />} />
+                  <Route path="/host/reviews" element={<Reviews />} />
+               </Route>
             </Route>
          </Routes>
       </BrowserRouter>

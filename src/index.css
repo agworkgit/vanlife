@@ -10,12 +10,18 @@
    box-sizing: border-box;
 }
 
+body {
+   background-color: #fff7ed;
+}
+
 /* UI */
 
 /* Logo */
 
 .logo {
-   font-family: Exile, sans-serif;
+   font-family:
+      Fugaz One,
+      sans-serif;
    font-weight: bolder;
    font-size: 1.75rem;
    cursor: pointer;
@@ -156,6 +162,9 @@
    text-align: center;
    background-color: #252525;
    color: white;
+   position: static;
+   bottom: 0%;
+   width: 100%;
 }
 
 .footer > p {
@@ -218,4 +227,20 @@
 .van-details-link {
    text-decoration: none;
    color: black;
+}
+
+/* Host */
+
+.host-nav {
+   display: flex;
+   gap: 1rem;
+}
+
+.host-nav > a {
+   text-decoration: none;
+   color: black;
+}
+
+.host-nav > a:hover {
+   text-decoration: underline;
 }
