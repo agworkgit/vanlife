@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 
 // Pages
 // Defaults
+import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import About from "./pages/About";
 // Vans
@@ -53,6 +54,9 @@ function App() {
                      <Route path="photos" element={<HostVanPhotos />} />
                   </Route>
                </Route>
+
+               {/* Catch-all route*/}
+               <Route path="*" element={<NotFound />} />
             </Route>
          </Routes>
       </BrowserRouter>

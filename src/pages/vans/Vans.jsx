@@ -1,6 +1,9 @@
 // Imports
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+
+// Data
+import { getVans } from "../../data/api";
 
 // Components
 // import Card from "../../components/Card";
@@ -21,16 +24,39 @@ export default function Vans() {
    const [searchParams, setSearchParams] = useSearchParams();
    const typeFilter = searchParams.get("type");
 
-   const [vans, setVans] = React.useState([]);
-   React.useEffect(() => {
-      fetch("/api/vans")
-         .then((res) => res.json())
-         .then((data) => setVans(data.vans));
+   const [vans, setVans] = useState([]);
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState(null);
+
+   useEffect(() => {
+      async function loadVans() {
+         setLoading(true);
+         try {
+            const data = await getVans();
+            setVans(data);
+         } catch (err) {
+            setError(err);
+         } finally {
+            setLoading(false);
+         }
+      }
+
+      loadVans();
    }, []);
 
    const displayedVans = typeFilter
       ? vans.filter((van) => van.type.toLowerCase() === typeFilter)
       : vans;
+
+   if (loading) {
+      return <h1 aria-live="polite">Loading...</h1>;
+   }
+
+   if (error) {
+      return (
+         <h1 aria-live="assertive">There was an error : {error.message}</h1>
+      );
+   }
 
    const vanElements = displayedVans.map((van) => {
       return (
