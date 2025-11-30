@@ -7,7 +7,8 @@ export default function HostLayout() {
          <nav className="host-nav">
             <NavLink
                className={({ isActive }) => (isActive ? "active-link" : "link")}
-               to="/host"
+               // Will tell Router to link to the current path, similar to doing cd in the terminal
+               to="."
                // Will tell Router to end matching here, otherwise multi match conflict
                end
             >
@@ -15,19 +16,19 @@ export default function HostLayout() {
             </NavLink>
             <NavLink
                className={({ isActive }) => (isActive ? "active-link" : "link")}
-               to="/host/income"
+               to="income"
             >
                Income
             </NavLink>
             <NavLink
                className={({ isActive }) => (isActive ? "active-link" : "link")}
-               to="/host/reviews"
+               to="reviews"
             >
                Reviews
             </NavLink>
             <NavLink
                className={({ isActive }) => (isActive ? "active-link" : "link")}
-               to="/host/vans"
+               to="vans"
             >
                Vans
             </NavLink>

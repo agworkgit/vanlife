@@ -241,3 +241,39 @@ body {
    display: flex;
    gap: 1rem;
 }
+
+.host-van-wrapper {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   justify-content: start;
+   background-color: #ffffff;
+   border-radius: 0.25rem;
+   padding: 1rem;
+}
+
+.host-van-detail {
+   display: flex;
+   flex-direction: row;
+}
+
+.host-card-img {
+   width: 128px;
+   height: 128px;
+   object-fit: cover;
+   object-position: center;
+   border-radius: 0.25rem;
+}
+
+.host-card-details {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   margin-left: 1rem;
+}
+
+.host-vans-grid {
+   margin-top: 2rem;
+   display: grid;
+   gap: 1rem;
+}
