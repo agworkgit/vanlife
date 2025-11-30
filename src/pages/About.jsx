@@ -1,29 +1,36 @@
-// Components
-import Card from "../components/Card";
-import CTA from "../components/CTA";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function About() {
    return (
-      <section className="standard-page">
-         <div className="grid">
-            <Card
-               textColor={"black"}
-               img={
-                  "https://images.unsplash.com/photo-1761839257661-c2392c65ea72?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8"
-               }
-               title={"Don’t squeeze in a sedan when you could relax in a van."}
-               descriptionTop={`Our mission is to enliven your road trip with the perfect travel van rental. Our vans are recertified before each trip to ensure your travel plans can go off without a hitch.
-                  (Hitch costs extra 😉)`}
-               descriptionBottom={`
-                  Our team is full of vanlife enthusiasts who know firsthand the magic of touring the world on 4 wheels.`}
-            />
-            <CTA
-               title={"Your destination is waiting. Your van is ready."}
-               buttonText={"Explore our vans"}
-               buttonColor={"black"}
-               buttonTextColor={"white"}
-            />
+      <div className="about-page-container">
+         <img
+            src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            className="about-hero-image"
+         />
+         <div className="about-page-content">
+            <h1>Don’t squeeze in a sedan when you could relax in a van.</h1>
+            <p>
+               Our mission is to enliven your road trip with the perfect travel
+               van rental. Our vans are recertified before each trip to ensure
+               your travel plans can go off without a hitch. (Hitch costs extra
+               😉)
+            </p>
+            <p>
+               Our team is full of vanlife enthusiasts who know firsthand the
+               magic of touring the world on 4 wheels.
+            </p>
          </div>
-      </section>
+         <div className="about-page-cta">
+            <h2>
+               Your destination is waiting.
+               <br />
+               Your van is ready.
+            </h2>
+            <Link className="link-button" to="/vans">
+               Explore our vans
+            </Link>
+         </div>
+      </div>
    );
 }

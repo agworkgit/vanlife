@@ -1,34 +1,16 @@
-// Imports
-import { useState, useEffect } from "react";
+import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-
-// Data
 import { getVans } from "../../data/api";
-
-// Components
-// import Card from "../../components/Card";
-// import CTA from "../../components/CTA";
-
-/**
- * {
- * id: "1",
- * name: "Modest Explorer",
- * price: 60,
- * description: "The Modest Explorer is a van designed to get you out of the house and into nature. This beauty is equipped with solar panels, a composting toilet, a water tank and kitchenette. The idea is that you can pack up your home and escape for a weekend or even longer!",
- * imageUrl: "https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png",
- * type: "simple"
- * }
- */
 
 export default function Vans() {
    const [searchParams, setSearchParams] = useSearchParams();
+   const [vans, setVans] = React.useState([]);
+   const [loading, setLoading] = React.useState(false);
+   const [error, setError] = React.useState(null);
+
    const typeFilter = searchParams.get("type");
 
-   const [vans, setVans] = useState([]);
-   const [loading, setLoading] = useState(false);
-   const [error, setError] = useState(null);
-
-   useEffect(() => {
+   React.useEffect(() => {
       async function loadVans() {
          setLoading(true);
          try {
@@ -45,50 +27,30 @@ export default function Vans() {
    }, []);
 
    const displayedVans = typeFilter
-      ? vans.filter((van) => van.type.toLowerCase() === typeFilter)
+      ? vans.filter((van) => van.type === typeFilter)
       : vans;
 
-   if (loading) {
-      return <h1 aria-live="polite">Loading...</h1>;
-   }
-
-   if (error) {
-      return (
-         <h1 aria-live="assertive">There was an error : {error.message}</h1>
-      );
-   }
-
-   const vanElements = displayedVans.map((van) => {
-      return (
+   const vanElements = displayedVans.map((van) => (
+      <div key={van.id} className="van-tile">
          <Link
-            className="van-details-link"
             to={van.id}
-            key={van.id}
             state={{
                search: `?${searchParams.toString()}`,
                type: typeFilter,
             }}
-            // sr-only
-            aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
          >
-            <article className="van-wrapper">
-               <p className="van-title">{van.name}</p>
-               <img
-                  className="van-card-img"
-                  src={van.imageUrl}
-                  alt={`Image for ${van.name}`}
-               />
-               {/* <p>{van.description}</p>*/}
-               <p className="van-price">
-                  ${van.price} <span>/ day</span>
+            <img src={van.imageUrl} />
+            <div className="van-info">
+               <h3>{van.name}</h3>
+               <p>
+                  ${van.price}
+                  <span>/day</span>
                </p>
-               <p className="van-type">
-                  {van.type[0].toUpperCase() + van.type.slice(1)}
-               </p>
-            </article>
+            </div>
+            <i className={`van-type ${van.type} selected`}>{van.type}</i>
          </Link>
-      );
-   });
+      </div>
+   ));
 
    function handleFilterChange(key, value) {
       setSearchParams((prevParams) => {
@@ -101,26 +63,36 @@ export default function Vans() {
       });
    }
 
+   if (loading) {
+      return <h1>Loading...</h1>;
+   }
+
+   if (error) {
+      return <h1>There was an error: {error.message}</h1>;
+   }
+
    return (
-      <section className="standard-page">
+      <div className="van-list-container">
          <h1>Explore our van options</h1>
-         <nav className="navbar">
+         <div className="van-list-filter-buttons">
             <button
-               // Replaced 'to' properties and NavLinks
                onClick={() => handleFilterChange("type", "simple")}
-               className={`van-filter simple ${typeFilter === "simple" ? "selected" : ""}`}
+               className={`van-type simple
+                        ${typeFilter === "simple" ? "selected" : ""}`}
             >
                Simple
             </button>
             <button
                onClick={() => handleFilterChange("type", "luxury")}
-               className={`van-filter luxury ${typeFilter === "luxury" ? "selected" : ""}`}
+               className={`van-type luxury
+                        ${typeFilter === "luxury" ? "selected" : ""}`}
             >
                Luxury
             </button>
             <button
                onClick={() => handleFilterChange("type", "rugged")}
-               className={`van-filter rugged ${typeFilter === "rugged" ? "selected" : ""}`}
+               className={`van-type rugged
+                        ${typeFilter === "rugged" ? "selected" : ""}`}
             >
                Rugged
             </button>
@@ -128,13 +100,13 @@ export default function Vans() {
             {typeFilter ? (
                <button
                   onClick={() => handleFilterChange("type", null)}
-                  className="van-filter clear"
+                  className="van-type clear-filters"
                >
                   Clear filter
                </button>
             ) : null}
-         </nav>
-         <div className="vans-grid">{vanElements}</div>
-      </section>
+         </div>
+         <div className="van-list">{vanElements}</div>
+      </div>
    );
 }

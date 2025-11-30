@@ -1,90 +1,85 @@
 import React from "react";
-import {
-   Link,
-   NavLink,
-   useParams,
-   Outlet,
-   useOutletContext,
-} from "react-router-dom";
+import { useParams, Link, NavLink, Outlet } from "react-router-dom";
+import { getHostVans } from "../../data/api";
 
 export default function HostVanDetail() {
-   /**
-    * Challenge (not optional!): build the shared UI portion of the
-    * Host Van Detail page. This is
-    *
-    * Optional portion: also style it to look like the design.
-    *
-    * For now, get the data from a request to `/api/host/vans/:id`
-    * and display the van image, name, price, type
-    */
-   const { id } = useParams();
    const [currentVan, setCurrentVan] = React.useState(null);
+   const [loading, setLoading] = React.useState(false);
+   const [error, setError] = React.useState(null);
+   const { id } = useParams();
 
    React.useEffect(() => {
-      fetch(`/api/host/vans/${id}`)
-         .then((res) => res.json())
-         .then((data) => setCurrentVan(data.vans));
-   }, []);
+      async function loadVans() {
+         setLoading(true);
+         try {
+            const data = await getHostVans(id);
+            setCurrentVan(data);
+         } catch (err) {
+            setError(err);
+         } finally {
+            setLoading(false);
+         }
+      }
 
-   if (!currentVan) {
+      loadVans();
+   }, [id]);
+
+   if (loading) {
       return <h1>Loading...</h1>;
    }
 
+   if (error) {
+      return <h1>There was an error: {error.message}</h1>;
+   }
+
+   const activeStyles = {
+      fontWeight: "bold",
+      textDecoration: "underline",
+      color: "#161616",
+   };
+
    return (
       <section>
-         <Link
-            to=".." // Will take us to the parent path "host"
-            relative="path" // If we specify this, "to" will point us to the parent path of "vans"
-            className="back-button"
-         >
+         <Link to=".." relative="path" className="back-button">
             &larr; <span>Back to all vans</span>
          </Link>
-
-         <div className="host-vans-grid">
-            <div className="host-van-wrapper">
+         {currentVan && (
+            <div className="host-van-detail-layout-container">
                <div className="host-van-detail">
-                  <img className="host-card-img" src={currentVan.imageUrl} />
-                  <div className="host-card-details">
-                     <h3>{currentVan.name}</h3>
-                     <h4>${currentVan.price}/day</h4>
+                  <img src={currentVan.imageUrl} />
+                  <div className="host-van-detail-info-text">
                      <i className={`van-type van-type-${currentVan.type}`}>
                         {currentVan.type}
                      </i>
+                     <h3>{currentVan.name}</h3>
+                     <h4>${currentVan.price}/day</h4>
                   </div>
                </div>
 
-               <nav className="navbar">
-                  {/* Your links go here */}
+               <nav className="host-van-detail-nav">
                   <NavLink
-                     className={({ isActive }) =>
-                        isActive ? "active-link" : "link"
-                     }
                      to="."
                      end
+                     style={({ isActive }) => (isActive ? activeStyles : null)}
                   >
                      Details
                   </NavLink>
                   <NavLink
-                     className={({ isActive }) =>
-                        isActive ? "active-link" : "link"
-                     }
                      to="pricing"
+                     style={({ isActive }) => (isActive ? activeStyles : null)}
                   >
                      Pricing
                   </NavLink>
                   <NavLink
-                     className={({ isActive }) =>
-                        isActive ? "active-link" : "link"
-                     }
                      to="photos"
+                     style={({ isActive }) => (isActive ? activeStyles : null)}
                   >
                      Photos
                   </NavLink>
                </nav>
-
                <Outlet context={{ currentVan }} />
             </div>
-         </div>
+         )}
       </section>
    );
 }

@@ -1,39 +1,46 @@
-// Imports
+import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 export default function HostLayout() {
+   const activeStyles = {
+      fontWeight: "bold",
+      textDecoration: "underline",
+      color: "#161616",
+   };
+
    return (
-      <section className="standard-page">
+      <>
          <nav className="host-nav">
             <NavLink
-               className={({ isActive }) => (isActive ? "active-link" : "link")}
-               // Will tell Router to link to the current path, similar to doing cd in the terminal
                to="."
-               // Will tell Router to end matching here, otherwise multi match conflict
                end
+               style={({ isActive }) => (isActive ? activeStyles : null)}
             >
                Dashboard
             </NavLink>
+
             <NavLink
-               className={({ isActive }) => (isActive ? "active-link" : "link")}
                to="income"
+               style={({ isActive }) => (isActive ? activeStyles : null)}
             >
                Income
             </NavLink>
+
             <NavLink
-               className={({ isActive }) => (isActive ? "active-link" : "link")}
-               to="reviews"
-            >
-               Reviews
-            </NavLink>
-            <NavLink
-               className={({ isActive }) => (isActive ? "active-link" : "link")}
                to="vans"
+               style={({ isActive }) => (isActive ? activeStyles : null)}
             >
                Vans
             </NavLink>
+
+            <NavLink
+               to="reviews"
+               style={({ isActive }) => (isActive ? activeStyles : null)}
+            >
+               Reviews
+            </NavLink>
          </nav>
          <Outlet />
-      </section>
+      </>
    );
 }

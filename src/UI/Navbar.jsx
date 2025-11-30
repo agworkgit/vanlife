@@ -1,5 +1,6 @@
 // Imports
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { FaRegUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
    return (
@@ -22,6 +23,9 @@ export default function Navbar() {
          >
             Vans
          </NavLink>
+         <Link to="login" className="link">
+            <FaRegUserCircle className="login-icon" />
+         </Link>
       </nav>
    );
 }

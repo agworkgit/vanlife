@@ -1,17 +1,15 @@
-// Components
-import Card from "../components/Card";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
    return (
-      <section className="background-page">
-         <Card
-            textColor={"white"}
-            title={"You got the travel plans, we got the travel vans."}
-            descriptionTop={
-               "Add adventure to your life by joining the #vanlife movement. Rent the perfect van to make your perfect road trip."
-            }
-            buttonText={"Find your van"}
-         />
-      </section>
+      <div className="home-container">
+         <h1>You got the travel plans, we got the travel vans.</h1>
+         <p>
+            Add adventure to your life by joining the #vanlife movement. Rent
+            the perfect van to make your perfect road trip.
+         </p>
+         <Link to="vans">Find your van</Link>
+      </div>
    );
 }
