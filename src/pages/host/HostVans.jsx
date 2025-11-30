@@ -14,7 +14,7 @@ export default function HostVans() {
       return (
          <Link
             className="van-details-link"
-            to={`/host/vans/${van.id}`}
+            to={van.id}
             key={van.id}
             // sr-only
             aria-label={`View details for ${van.name}, priced at $${van.price} per day`}

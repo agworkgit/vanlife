@@ -1,9 +1,11 @@
 // Imports
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 export default function VanDetail() {
    const params = useParams();
+   // location state comes from React Router's way of handling BrowserAPI history
+   const location = useLocation();
    // console.log(params); // the id we get from useParams comes the route :id variable we set up in App.jsx
    const [van, setVan] = useState(null);
 
@@ -14,9 +16,20 @@ export default function VanDetail() {
    }, [params.id]);
 
    // console.log(van);
+   //
+   const search = location.state?.search || "";
+   const type = location.state?.type || "all";
 
    return (
       <section className="standard-page">
+         <Link
+            to={`..${search}`} // Will take us to the parent path "host"
+            relative="path" // If we specify this, "to" will point us to the parent path of "vans"
+            className="back-button"
+         >
+            &larr; <span>Back to {type} vans</span>
+         </Link>
+
          {van ? (
             <article className="van-wrapper">
                <img

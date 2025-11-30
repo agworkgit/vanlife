@@ -277,3 +277,42 @@ body {
    display: grid;
    gap: 1rem;
 }
+
+/* Van Filters */
+
+.van-filter {
+   border: none;
+   padding: 0.5rem;
+   border-radius: 0.25rem;
+   background-color: grey;
+}
+
+.van-filter:hover.simple {
+   background-color: green;
+   color: black;
+}
+
+.van-filter:hover.rugged {
+   background-color: yellow;
+   color: black;
+}
+
+.van-filter:hover.luxury {
+   background-color: red;
+   color: black;
+}
+
+.van-filter.clear {
+   background-color: transparent;
+   color: black;
+}
+
+.van-filter:hover.clear {
+   background-color: transparent;
+   color: red;
+}
+
+.van-filter.selected {
+   background-color: green;
+   color: black;
+}
