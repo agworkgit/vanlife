@@ -25,6 +25,12 @@ export default function HostLayout() {
             >
                Reviews
             </NavLink>
+            <NavLink
+               className={({ isActive }) => (isActive ? "active-link" : "link")}
+               to="/host/vans"
+            >
+               Vans
+            </NavLink>
          </nav>
          <Outlet />
       </section>
